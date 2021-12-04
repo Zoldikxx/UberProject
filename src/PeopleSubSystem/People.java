@@ -21,15 +21,6 @@ public abstract class People {
 		this.email=email;
 		this.phoneNumber=phoneNumber;
 	}
-	
-	/*public people(Registeration reg)
-	{
-		this.reg=reg;
-	}
-	public void setReg(Registeration reg) {
-		this.reg = reg;
-	}*/
-	
 	public People(String username, String password, String phoneNumber)
 	{
 		this.username=username;

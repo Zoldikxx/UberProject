@@ -12,7 +12,7 @@ public class Admin extends People{
 	static ArrayList<People>PendingDrivers=new ArrayList<People>();
 	public void addPendingDrivers(People d)
 	{
-		PendingDrivers.add(d);
+		PendingDrivers.add((Driver)d);
 	}
 	public People getPendingDriver()
 	{
@@ -34,21 +34,28 @@ public class Admin extends People{
     public void register() throws IOException {
         r.register(this);
     }
-	public void verify(People p) throws IOException
+	public void verify(int p) throws IOException
 	{
-		((Driver) p).setState(true);
-		PendingDrivers.remove(p);
-		((Driver) p).register();
+		((Driver)PendingDrivers.get(p-1)).setState(true);
+		((Driver)PendingDrivers.get(p-1)).register();
+		PendingDrivers.remove(p-1);
+		
 	}
-	public ArrayList ListDrivers()
+	public void ListDrivers()
 	{
-		return PendingDrivers;
+		if(PendingDrivers.size()==0)
+		{
+			System.out.println("No requests are available ");
+		}
+		else
+		{
+			for(int i=0;i<PendingDrivers.size();i++)
+			{ 	
+				System.out.println(i+1 +"-->"+"Name :" + PendingDrivers.get(i).getUserName()+" "+"Password : "+ PendingDrivers.get(i).getPassword());	
+			}
+		}
 	}
 	 Registration r;
-	 
-	 /*static String id="admin";
-	 static String pw="admin";*/
-	 
 	 public Admin(String id,String pw,String num) 
 	 {
 		  super(id, pw, num);

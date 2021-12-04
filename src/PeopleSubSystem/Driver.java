@@ -105,7 +105,15 @@ public class Driver extends People{
     @Override
     public boolean signIn(String ID,String PW) throws IOException
 	{
-	boolean flag=false;
+    	boolean flag=false;
+    	if(state==false)
+    	{
+    		System.out.println("Login Refused the admin hasn't verified you yet.");
+    		return flag;
+    	}
+    	else
+    	{
+	
 	File files=new File("C:\\FCI\\TestingFiles\\Driver.txt");
 	Reader reader=new FileReader(files);
     try (BufferedReader read =new BufferedReader(reader))
@@ -128,6 +136,7 @@ public class Driver extends People{
             }   
         }
 	return flag;
+	}
 	}
 	}
 }

@@ -16,7 +16,7 @@ public class DriverRegister implements Registration
 	Admin a;
     public void register(People d) throws IOException
     {   
-    	a.addPendingDrivers(d);
+    	addPendingtoAdmin(d);
     	if(((Driver) d).getState())
     	{
         File DriverFile=new File("C:\\FCI\\TestingFiles\\Driver.txt");

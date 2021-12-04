@@ -26,24 +26,24 @@ public class Main
 				System.out.println("1-Customer");
 				System.out.println("2-Driver");
 				System.out.println("3-Admin");
-				choice = input.nextLine();
+				choice = input.next();
 				if(choice.equals("1"))
 				{
 					System.out.println("Please Choose one of the following");
 			        System.out.println("1- Register");
 			        System.out.println("2- Login");
-			        choice = input.nextLine();
+			        choice = input.next();
 			        System.out.println("\n");
 			        if(choice.equals("1"))
 			    {  
 			    	System.out.println("Please enter your UserName: ");
-					String UserName=input.nextLine();
+					String UserName=input.next();
 					System.out.print("Please enter your password: ");
-			        String password = input.nextLine();
+			        String password = input.next();
 			        System.out.print("Enter your Email (optional): ");
-			        String email = input.nextLine();
+			        String email = input.next();
 			        System.out.print("Please enter your Mobile Number: ");
-			        String phone = input.nextLine();
+			        String phone = input.next();
 			        System.out.println("\n");
 			        Customer c=new Customer(UserName,password,email,phone);
 			        Registration r=new CustomerRegister();
@@ -54,11 +54,11 @@ public class Main
 			        else if(choice.equals("2"))
 			    	{
 			    		System.out.println("Please enter your UserName: ");
-			    		String UserName=input.nextLine();
+			    		String UserName=input.next();
 			    		System.out.print("Please enter your password: ");
-			            String password = input.nextLine();
+			            String password = input.next();
 			            System.out.print("Please enter your PhoneNumber ");
-			            String PhoneNumber = input.nextLine();
+			            String PhoneNumber = input.next();
 			            Customer c=new Customer(UserName,password,PhoneNumber);
 			            if(c.signIn(UserName, password))
 			    		{
@@ -67,19 +67,21 @@ public class Main
 			                System.out.println("1.Request Ride");
 			                System.out.println("2.List Offers");
 			                System.out.println("3.Exit");
-			                String choice2 = input.nextLine();
+			                String choice2 = input.next();
 			                System.out.println("\n");
 			                    switch(choice2){
 			                        case "1":
 			                            System.out.print("Enter A Source: ");
-			                            String source = input.nextLine();
+			                            String source = input.next();
 			                            System.out.print("Enter A Destination: ");
-			                            String destination = input.nextLine();
+			                            String destination = input.next();
 			                            System.out.println("\n");
 			                            c.request(c,source, destination); //To request a ride giving src,dest
 			                            break;
 			                        case "2":
 			                        	//Do Something.
+			                        	System.out.println("Waiting for Sprint 2");
+			                        	break;
 			                        case "3":
 			                        	System.exit(0);
 			                        default:
@@ -98,22 +100,22 @@ public class Main
 					System.out.println("Please Choose one of the following");
 			        System.out.println("1- Register");
 			        System.out.println("2- Login");
-			        choice = input.nextLine();
+			        choice = input.next();
 			        System.out.println("\n");
 			        if(choice.equals("1"))
 			    {  
 			    	System.out.println("Please enter your UserName: ");
-					String UserName=input.nextLine();
+					String UserName=input.next();
 					System.out.print("Please enter your password: ");
-			        String password = input.nextLine();
+			        String password = input.next();
 			        System.out.print("Please enter your Email (optional): ");
-			        String email = input.nextLine();
+			        String email = input.next();
 			        System.out.print("Please enter your Mobile Number: ");
-			        String phone = input.nextLine();
+			        String phone = input.next();
 			        System.out.print("Please enter your NationalID ");
-			        String NationalID=input.nextLine();
+			        String NationalID=input.next();
 			        System.out.print("Please enter your DrivingLicense: ");
-			        String DrivingLicense=input.nextLine();
+			        String DrivingLicense=input.next();
 			        System.out.println("\n");
 			        Registration r=new DriverRegister();
 			        ((DriverRegister) r).setAdmin(a);
@@ -121,21 +123,20 @@ public class Main
 			        d.setrig(r);
 			        d.register();
 			        drivers.add(d);
-			        a.verify(d);
-			        System.out.println("The admin has verified you");
+			        
 				}
 			        else if(choice.equals("2"))
 			        {
 			        	System.out.println("Please enter your UserName: ");
-			    		String UserName=input.nextLine();
+			    		String UserName=input.next();
 			    		System.out.print("Please enter your password: ");
-			            String password = input.nextLine();
+			            String password = input.next();
 			            System.out.print("Please enter your PhoneNumber ");
-			            String PhoneNumber = input.nextLine();
+						String PhoneNumber = input.next();
 			            System.out.println("Please enter your NationalID ");
-			    		String NationalID=input.nextLine();
+			    		String NationalID=input.next();
 			    		System.out.println("Please enter your DrivingLicense ");
-			    		String DrivingLicense=input.nextLine();
+			    		String DrivingLicense=input.next();
 			            Driver d=new Driver(UserName,password,PhoneNumber,NationalID,DrivingLicense);
 			            if(d.signIn(UserName, password))
 			            {
@@ -147,40 +148,66 @@ public class Main
 			            			d=drivers.get(i);
 			            		}
 			            	}
+			            	 System.out.println("Choose from the following: ");
+					            System.out.println("1.Add Favorite Area");
+					            System.out.println("2.Remove Favorite Area");
+					            System.out.println("3.List Requests");
+					            System.out.println("4.Create Offer");
+					            System.out.println("5.Exit");
+					            String choice2 = input.next();
+					            System.out.println("\n");
+					            switch(choice2)
+					            {
+					            case "1":
+					            	System.out.print("Enter your fav Area: ");
+					                d.addFavArea(input.next());
+					                break;
+					            case "2":
+					            	System.out.print("Enter The Area: ");
+					                d.removeFavArea(input.next());
+					                break;
+					            case "3":
+					            	System.out.println("Ride requests: ");
+					            	d.listRequests();                    	
+					            	break;
+					            case "4":
+					            	 ArrayList<Ride> availableRequests = d.getRides();
+					            	 System.out.println("Please enter the ride cost: ");
+					            	 int cost=input.nextInt();
+					            	 availableRequests.get(0).AddOffer(cost, d);
+					            	 break;
+					            case "5":
+					            	System.exit(0);
+					            }
 			            }
-			            System.out.println("Choose from the following: ");
-			            System.out.println("1.Add Favorite Area");
-			            System.out.println("2.Remove Favorite Area");
-			            System.out.println("3.List Requests");
-			            System.out.println("4.Create Offer");
-			            System.out.println("5.Exit");
-			            String choice2 = input.nextLine();
-			            System.out.println("\n");
-			            switch(choice2)
-			            {
-			            case "1":
-			            	System.out.print("Enter your fav Area: ");
-			                d.addFavArea(input.nextLine());
-			                break;
-			            case "2":
-			            	System.out.print("Enter The Area: ");
-			                d.removeFavArea(input.nextLine());
-			                break;
-			            case "3":
-			            	System.out.println("Ride requests: ");
-			            	d.listRequests();                    	
-			            	break;
-			            case "4":
-			            	 ArrayList<Ride> availableRequests = d.getRides();
-			            	 System.out.println("Please enter the ride cost: ");
-			            	 int cost=input.nextInt();
-			            	 availableRequests.get(0).AddOffer(cost, d);                    	 
-			            case "5":
-			            	System.exit(0);
-			            }
+			           
 			        }
 					
 }
+				else if(choice.equals("3"))
+						{	
+							System.out.println("1- List pending requests");
+							int choice6=input.nextInt();
+							
+							if(drivers.size()==0)
+							{
+								System.out.println("No requests are available");
+								continue;
+							}
+							if(choice6==1)
+							{
+								a.ListDrivers();
+							}
+							System.out.println("Please enter the number of driver you want to verify");
+							int i=input.nextInt();
+							a.verify(i);
+							drivers.remove(i-1);
+					        System.out.println("The admin has verified you");
+						}
+				else
+				{
+					System.out.println("Wrong choice!");
+				}
 }
 		}
 	}
