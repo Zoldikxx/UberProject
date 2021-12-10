@@ -12,7 +12,7 @@ public class CustomerRegister implements Registration
     //@Override
     public void register(People c) throws IOException
     {
-        File CustomerFile=new File("C:\\FCI\\TestingFiles\\Customer.txt");
+        File CustomerFile=new File("Customer.txt");
         boolean result;
         result=CustomerFile.createNewFile(); //Creates new file.
         

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class AdminRegister implements Registration {
     //@Override
     public void register(People a) throws IOException {
-        File AdminFile=new File("C:\\FCI\\TestingFiles\\Admin.txt");
+        File AdminFile=new File("Admin.txt");
         boolean result;
         result=AdminFile.createNewFile(); //Creates new file.
         

@@ -19,7 +19,7 @@ public class DriverRegister implements Registration
     	addPendingtoAdmin(d);
     	if(((Driver) d).getState())
     	{
-        File DriverFile=new File("C:\\FCI\\TestingFiles\\Driver.txt");
+        File DriverFile=new File("Driver.txt");
         boolean result;
         result=DriverFile.createNewFile(); //Creates new file.
 
