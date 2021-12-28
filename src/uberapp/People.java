@@ -1,10 +1,6 @@
-package PeopleSubSystem;
+package uberapp;
 
 
-import java.io.FileNotFoundException; 
-import java.io.IOException;
-import RegisterationSubSystem.*;
-import RideSubSystem.*;
 public abstract class People {
 	private String username;
 	private String password;
@@ -12,20 +8,19 @@ public abstract class People {
 	private String phoneNumber;
 	private String DrivingLicense;
 	private String NationalId;
-	
-	
-	public People(String username, String password, String email, String phoneNumber)
+	public People()
 	{
-		this.username=username;
-		this.password=password;
-		this.email=email;
-		this.phoneNumber=phoneNumber;
+		username="";
+		password="";
+		email="";
+		phoneNumber="";
 	}
-	public People(String username, String password, String phoneNumber)
-	{
-		this.username=username;
-		this.password=password;
-		this.phoneNumber=phoneNumber;
+
+	public People(String username, String password, String email, String phoneNumber) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
 	}
 	public void setUserName(String username)
 	{
@@ -49,7 +44,7 @@ public abstract class People {
 	public void setDrivingLicense(String DrivingLicense)
 	{
 		this.DrivingLicense=DrivingLicense;
-	}	
+	}
 	public String getUserName()
 	{
 		return username;
@@ -66,6 +61,16 @@ public abstract class People {
 	{
 		return phoneNumber;
 	}
-	public abstract boolean signIn(String ID,String PW) throws FileNotFoundException, IOException;
-	
+	public abstract boolean signIn(String ID,String PW);
+	public String getDrivingLicense()
+	{
+		return DrivingLicense;
+	}
+	public String getNationalID()
+	{
+		return NationalId;
+	}
+
+
+
 }
