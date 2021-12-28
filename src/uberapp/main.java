@@ -9,7 +9,7 @@ import RideSubSystem.*;
 //Ziad Mohamed 20196024
 //Aliaa Ehab 20196081
 //Jana Hossam 20196015
-public class Main
+public class main
 {
 	public static void main(String[] args) throws IOException
 	{
