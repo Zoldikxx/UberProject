@@ -2,10 +2,12 @@ package uberapp;
 
 
 public abstract class People {
+
 	private String username;
 	private String password;
 	private String email;
 	private String phoneNumber;
+	private float Balance;
 	private String DrivingLicense;
 	private String NationalId;
 	public People()
@@ -70,6 +72,7 @@ public abstract class People {
 	{
 		return NationalId;
 	}
+	public float getBalance(){return Balance;}
 
 
 

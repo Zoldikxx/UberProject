@@ -78,7 +78,13 @@ public class CustomerMenu {
                 customer.requestRide(customer, source, destination);
             }
             else if (choice.equals("2")) {
+                int choice4;
                 customer.listOffer(customer);
+                System.out.println("Enter offer you want");
+                choice4=input.nextInt();
+                customer.acceptOffer(choice4,customer);
+                System.out.println("Ride has started");
+
             }
             else if (choice.equals("3")) {
                 if (!customer.listNotification()) {
@@ -94,7 +100,7 @@ public class CustomerMenu {
                 else {
                     customer.History(customer);
                     while (true){
-                        System.out.println("1. Rate previous ride");
+                        System.out.println("1. Rate previous rides");
                         System.out.println("2. Go back");
                         choice = input.next();
                         if (choice.equals("1")) {

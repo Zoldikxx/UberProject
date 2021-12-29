@@ -13,7 +13,7 @@ public class Notifications {
         else{
             flag=true;
             for(int i=0; i<UserNotification.size();i++){
-                System.out.println((i+1)+" "+UserNotification.get(i));
+                System.out.println((i+1)+". "+UserNotification.get(i)+"\n");
             }
         }
         return flag; }
@@ -25,7 +25,7 @@ public class Notifications {
         else {
             flag=true;
             for (int i = 0; i < DriverNotification.size(); i++) {
-                System.out.println((i + 1) + " " + DriverNotification.get(i));
+                System.out.println((i + 1) + ". " + DriverNotification.get(i)+"\n");
             }
         }
         return flag;}

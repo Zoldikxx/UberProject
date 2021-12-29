@@ -53,8 +53,8 @@ public class Customer extends People {
     public void rateRide(int index,float rating){
         ride.rating(index,rating);
     }
-    public void acceptOffer(){
-        // ride.start();
+    public void acceptOffer(int index, Customer customer1){
+        ride.acceptOffer(index,customer1);
     }
     public void listOffer(Customer customer){
         ride.listOffer(customer);

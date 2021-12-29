@@ -66,7 +66,9 @@ public class DriverMenu {
             System.out.println("4.List Requests in favourite area");
             System.out.println("5.Make offer");
             System.out.println("6.Notifications");
-            System.out.println("7.Go back");
+            System.out.println("7.Show active rides");
+            System.out.println("8.Check balance");
+            System.out.println("9.Go back");
             choice = input.next();
             System.out.println("\n");
             if(choice.equals("1")){
@@ -101,6 +103,30 @@ public class DriverMenu {
                 driver.listNotification();
             }
             else if(choice.equals("7")){
+                if(!driver.checkActiveRides(driver)){
+                    System.out.println("You don't have any active rides");
+                }
+                else{
+                    driver.printActiveRides(driver);
+                    System.out.println("Do you want to end ride?");
+                    System.out.println("1. Yes");
+                    System.out.println("2. No");
+                    int choice2=input.nextInt();
+                    if(choice2==1){
+                        driver.endRide(driver);
+                        System.out.println("Ride has ended");
+                        System.out.println("Your balance has been updated");
+                    }
+                    else
+                        break;
+                }
+
+            }
+            else if (choice.equals("8")){
+                float balance=driver.getBalance();
+                System.out.println("Your current balance is "+balance);
+            }
+            else if(choice.equals("9")){
                 break;
             }
 

@@ -8,10 +8,12 @@ public class Ride {
     String Source , Destination, title, description, time;
     Customer customer;
     Driver driver;
-    Offer offer;
+    static Offer offer=new Offer();
+    static ArrayList<Offer>offers=offer.getOffers();
+
     int indexOffer=0;
     //private int [] Offer=new int[10];
-    static ArrayList<Offer> offers = new ArrayList<Offer>();
+    //static ArrayList<Offer> offers = new ArrayList<Offer>();
     static ArrayList<Ride> rides= new ArrayList<Ride>();
     static ArrayList<Ride> requests= new ArrayList<Ride>();
     static ArrayList<Ride> history= new ArrayList<Ride>();
@@ -25,7 +27,7 @@ public class Ride {
         Source="";
         Destination=" ";
         state=false;
-        offer=null;
+        //offer=null;
     }
     public Ride(Customer customer,String Source,String Destination){
         this.customer=customer;
@@ -38,11 +40,33 @@ public class Ride {
     public void request(Ride ride){
         requests.add(ride);
     }
-    public void start(int index){
-        Ride ride= requests.get(index-1);
-        rides.add(ride);
-        requests.remove(ride);
+    public boolean ActiveRides(Driver driver3){
+        boolean flag=false;
+        if(rides.size()==0){
+             flag=false;
+        }
+        else {
+            for(int i=0;i< rides.size();i++) {
+                if (driver3.getUserName().equals(rides.get(i).getDriver().getUserName()))
+                { flag = true;}
+                else
+                    flag=false;
+            }
+        }
+        return flag;
     }
+    public void printActiveRides(Driver driver5){
+        for(int i=0;i< rides.size();i++) {
+            if(driver5.getUserName().equals(rides.get(i).getDriver().getUserName())){
+                System.out.println("Customer Name: "+rides.get(i).getCustomer().getUserName());
+                System.out.println("Source: "+rides.get(i).getSource());
+                System.out.println("Destination: "+rides.get(i).getDestination());
+                System.out.println("ETA: 45 minutes");
+            }
+        }
+
+    }
+
     public boolean listHistory(Customer customer){
         boolean flag;
 
@@ -64,11 +88,24 @@ public class Ride {
 
         return flag;
     }
-    public void end(Ride ride){
-        history.add(ride);
+    public void end(Driver driver2){
+        for(int i=0;i< rides.size();i++) {
+            if(driver2.getUserName().equals(rides.get(i).getDriver().getUserName())){
+                history.add(rides.get(i));
+                float Balance=driver2.getBalance()+rides.get(i).RideCost;
+                rides.remove(rides.get(i));
+                driver2.setBalance(Balance);
+                String notification="Ride has ended";
+                notifications.UserNotification.add(notification);
+                notifications.DriverNotification.add(notification);
+            }
+        }
+       /* history.add(ride);
         rides.remove(ride);
+        float Balance=ride.getDriver().getBalance()+ride.getCost();
+        ride.getDriver().setBalance(Balance);
         String notification="Ride has ended";
-        notifications.UserNotification.add(notification);
+        notifications.UserNotification.add(notification);*/
     }
 
     public void listAllRequests(){
@@ -100,6 +137,7 @@ public class Ride {
         notifications.UserNotification.add(notification);
 
     }
+
     public void rating(int index,float rating){
         history.get(index-1).rating=rating;
     }
@@ -120,10 +158,11 @@ public class Ride {
     public float getRating(){
         return rating;
     }
-    public Offer getOffer()
+    public float getCost(){return RideCost;}
+    public ArrayList<Offer> getOffer()
     {
-        offer.getOffers();
-        return offer;
+       // offer.getOffers();
+        return offers;
     }
     public void listOffer(Customer customer2)
     {
@@ -135,14 +174,41 @@ public class Ride {
             {
                 if(requests.get(i).getCustomer().getUserName().equals(customer2.getUserName()))
                 {
-                    System.out.println("Offer: "+ requests.get(i).getOffer().getCost());
-                    System.out.println("Driver Name: "+ requests.get(i).getOffer().getDriver().getUserName());
-                    System.out.println("Driver Number: "+ requests.get(i).getOffer().getDriver().getNumber());
-                    System.out.println("Driver License: "+ requests.get(i).getOffer().getDriver().getDrivingLicense());
-                }
+                    for(int j=0;j<offers.size();j++){
 
+                    System.out.println((i+1)+". Offer: "+ requests.get(i).getOffer().get(j).getCost());
+                    System.out.println("Driver Name: "+ requests.get(i).getOffer().get(j).getDriver().getUserName());
+                    System.out.println("Driver Number: "+ requests.get(i).getOffer().get(j).getDriver().getNumber());
+                    System.out.println("Driver License: "+ requests.get(i).getOffer().get(j).getDriver().getDrivingLicense()+"\n");
+                }
+                }
             }
         }
+
+    }
+    public void acceptOffer(int indexOffer,Customer customer){
+        String notification="Your Offer was accepted";
+        for(int i=0;i<requests.size();i++)
+        {
+            if(requests.get(i).getCustomer().getUserName().equals(customer.getUserName()))
+            {
+                    requests.get(i).RideCost= requests.get(i).getOffer().get(indexOffer-1).getCost();
+                    requests.get(i).driver= requests.get(i).getOffer().get(indexOffer-1).getDriver();
+                    requests.get(i).state=true;
+                    start(i);
+            }
+        }
+        notifications.DriverNotification.add(notification);
+
+
+    }
+    public void start(int index){
+        Ride ride= requests.get(index);
+        rides.add(ride);
+        requests.remove(ride);
+        String notification="Your ride has started";
+        notifications.DriverNotification.add(notification);
+        notifications.UserNotification.add(notification);
 
     }
 }

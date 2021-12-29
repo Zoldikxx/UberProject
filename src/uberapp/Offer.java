@@ -2,7 +2,7 @@ package uberapp;
 
 import java.util.ArrayList;
 
-public class Offer {
+public class Offer extends ArrayList<Offer> {
     private int cost;
     private Driver driver;
     ArrayList<Offer> offers = new ArrayList<Offer>();
