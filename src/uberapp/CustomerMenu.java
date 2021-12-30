@@ -80,18 +80,21 @@ public class CustomerMenu {
             else if (choice.equals("2")) {
                 int choice4;
                 customer.listOffer(customer);
-                System.out.println("Enter offer you want");
+                System.out.println("Enter offer you want to accept");
                 choice4=input.nextInt();
                 customer.acceptOffer(choice4,customer);
                 System.out.println("Ride has started");
 
             }
             else if (choice.equals("3")) {
-                if (!customer.listNotification()) {
-                    System.out.println("No notifications available");
+                if(!customer.checkNotification()){
+                    System.out.println("There are no notifications yet");
                 }
-                else
+                else if(customer.checkNotification()){
                     customer.listNotification();
+                }
+
+
             }
             else if (choice.equals("4")) {
                 if(!customer.History(customer)){

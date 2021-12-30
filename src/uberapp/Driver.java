@@ -31,6 +31,12 @@ public class Driver extends People {
         this.NationalID=NationalID;
         this.DrivingLicense=DrivingLicense;
     }
+    public boolean checkRequests(){
+        return ride.checkRequests();
+    }
+    public boolean checkFavRequests(Driver driver){
+        return ride.checkFavRequests(driver);
+    }
     public void register(People driver) throws IOException {
         driverRegister.register(driver);
     }
@@ -65,6 +71,10 @@ public class Driver extends People {
         }
         return flag;
     }
+
+    public boolean checkNotification(){
+        return notification.checkDriverNotification();
+    }
     public void listNotification(){
         notification.listDriverNotification();
     }
@@ -80,7 +90,6 @@ public class Driver extends People {
     public void addFavArea(String area){
         favAreas.add(area);
     }
-
     public boolean removeFavArea(String area){
         if(!favAreas.remove(area)){
             System.out.println("Area not found");
@@ -89,7 +98,6 @@ public class Driver extends People {
         else
             return true;
     }
-
     public boolean getStatus(){return status;}
     public void setStatus(boolean status){this.status=status;}
     public ArrayList<String> getFavArea(){

@@ -85,10 +85,18 @@ public class DriverMenu {
                 }
             }
             else if(choice.equals("3")){
-                driver.listAllRequests();
+                if(!driver.checkRequests()){
+                    System.out.println("There are no requests");
+                }
+                else
+                    driver.listAllRequests();
             }
             else if(choice.equals("4")){
-                driver.listRequests(driver);
+                if(!driver.checkFavRequests(driver)){
+                    System.out.println("There are no requests");
+                }
+                else
+                    driver.listRequests(driver);
             }
             else if(choice.equals("5")){
                 driver.listAllRequests();
@@ -100,7 +108,13 @@ public class DriverMenu {
             }
 
             else if(choice.equals("6")){
-                driver.listNotification();
+                if(!driver.checkNotification()){
+                    System.out.println("There are no notifications yet");
+                }
+                else if(driver.checkNotification()){
+                    driver.listNotification();
+                }
+
             }
             else if(choice.equals("7")){
                 if(!driver.checkActiveRides(driver)){

@@ -110,10 +110,39 @@ public class Ride {
 
     public void listAllRequests(){
         for (int i=0; i<requests.size();i++) {
-            System.out.println(i+1+ " " +"Customer: "+requests.get(i).getCustomer().getUserName());
-            System.out.println("Source: "+requests.get(i).getSource());
-            System.out.println("Destination: "+requests.get(i).getDestination()+"\n");
+            System.out.println(i+1+ ". " +"Customer: "+requests.get(i).getCustomer().getUserName());
+            System.out.println("  Source: "+requests.get(i).getSource());
+            System.out.println("  Destination: "+requests.get(i).getDestination()+"\n");
+            System.out.println("  Phone Number: "+requests.get(i).getCustomer().getNumber());
         }
+    }
+    public boolean checkRequests(){
+        if(requests.size()==0){
+            return false;
+        }
+        else
+            return true;
+    }
+    public boolean checkFavRequests(Driver driver1){
+        boolean flag=false;
+        ArrayList<String> temp=driver1.getFavArea();
+        if(requests.size()==0 ){
+            flag= false;
+        }
+        else if (temp.size()==0) {
+            flag= false;
+        }
+
+        else{
+            for(int i=0;i<requests.size();i++){
+                for(String area: driver1.favAreas) {
+                    if (requests.get(i).getSource().equals(area)) {
+                       flag= true;
+                    }
+                }
+            }
+        }
+        return flag;
     }
     public void listRequests(Driver driver1){
         for(int i=0; i<requests.size();i++){
@@ -202,6 +231,7 @@ public class Ride {
 
 
     }
+
     public void start(int index){
         Ride ride= requests.get(index);
         rides.add(ride);

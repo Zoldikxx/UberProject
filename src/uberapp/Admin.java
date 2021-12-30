@@ -55,7 +55,7 @@ public class Admin extends People {
 			flag=true;
 			for(int i=0;i<PendingDrivers.size();i++)
 			{
-				System.out.println(i+1 +"."+"Name :" + PendingDrivers.get(i).getUserName()+" "+PendingDrivers.get(i).getDrivingLicense()+" "+PendingDrivers.get(i).getNationalID()+" "+PendingDrivers.get(i).getEmail()+" "+PendingDrivers.get(i).getNumber());
+				System.out.println(i+1 +"."+"Name :" + PendingDrivers.get(i).getUserName()+"\n"+"Driving License: "+PendingDrivers.get(i).getDrivingLicense()+"\n"+"National Id: "+PendingDrivers.get(i).getNationalID()+"\n"+"Email: "+PendingDrivers.get(i).getEmail()+"\n"+"Phone: "+PendingDrivers.get(i).getNumber());
 			}
 		}
 	}

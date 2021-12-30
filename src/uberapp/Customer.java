@@ -44,8 +44,11 @@ public class Customer extends People {
     {
     	System.out.println("New Offer has been added"+ offer +"from: " + d.getUserName());
     }*/
-    public boolean listNotification(){
-        return notification.listUserNotification();
+    public boolean checkNotification(){
+        return notification.checkUserNotification();
+    }
+    public void listNotification(){
+        notification.listUserNotification();
     }
     public boolean History(Customer customer){
         return ride.listHistory(customer);
