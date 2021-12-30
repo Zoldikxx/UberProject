@@ -47,10 +47,6 @@ public class Driver extends People {
         ride.listRequests(driver);
     }
 
-    /*public ArrayList<Ride> getRides()
-    {
-        return availableRequests;
-    }*/
     public void AddOffer(int index, int cost, Driver driver)
     {
         ride.makeOffer(index, cost, driver);
@@ -93,6 +89,13 @@ public class Driver extends People {
     public boolean removeFavArea(String area){
         if(!favAreas.remove(area)){
             System.out.println("Area not found");
+            return false;
+        }
+        else
+            return true;
+    }
+    public boolean checkFavArea(Driver driver){
+        if(driver.getFavArea().size()==0){
             return false;
         }
         else

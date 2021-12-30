@@ -50,8 +50,10 @@ public class Customer extends People {
     public void listNotification(){
         notification.listUserNotification();
     }
-    public boolean History(Customer customer){
-        return ride.listHistory(customer);
+    public boolean checkHistory(Customer customer){return ride.checkHistory(customer); }
+
+    public void History(Customer customer){
+         ride.listHistory(customer);
     }
     public void rateRide(int index,float rating){
         ride.rating(index,rating);
@@ -62,5 +64,6 @@ public class Customer extends People {
     public void listOffer(Customer customer){
         ride.listOffer(customer);
     }
+    public boolean checkOffers(Customer customer){return ride.checkforOffer(customer);}
 
 }

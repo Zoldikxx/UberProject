@@ -66,15 +66,21 @@ public class Ride {
         }
 
     }
-
-    public boolean listHistory(Customer customer){
-        boolean flag;
-
+    public boolean checkHistory(Customer customer){
+        boolean flag=false;
         if(history.size()==0){
             flag =false;
         }
-        else {
-            flag=true;
+        else{
+            for (int i=0;i< history.size();i++) {
+                if(history.get(i).getCustomer().getUserName().equals(customer.getUserName())) {
+                   flag=true;
+                }
+            }
+        }
+        return flag;
+    }
+    public void listHistory(Customer customer){
             for (int i=0;i< history.size();i++) {
                 if(history.get(i).getCustomer().getUserName().equals(customer.getUserName())) {
                     System.out.println("Driver " + history.get(i).getDriver().getUserName());
@@ -84,9 +90,6 @@ public class Ride {
                 }
 
             }
-        }
-
-        return flag;
     }
     public void end(Driver driver2){
         for(int i=0;i< rides.size();i++) {
@@ -107,7 +110,6 @@ public class Ride {
         String notification="Ride has ended";
         notifications.UserNotification.add(notification);*/
     }
-
     public void listAllRequests(){
         for (int i=0; i<requests.size();i++) {
             System.out.println(i+1+ ". " +"Customer: "+requests.get(i).getCustomer().getUserName());
@@ -166,7 +168,6 @@ public class Ride {
         notifications.UserNotification.add(notification);
 
     }
-
     public void rating(int index,float rating){
         history.get(index-1).rating=rating;
     }
@@ -188,17 +189,24 @@ public class Ride {
         return rating;
     }
     public float getCost(){return RideCost;}
-    public ArrayList<Offer> getOffer()
-    {
-       // offer.getOffers();
+    public ArrayList<Offer> getOffer(){
+
         return offers;
     }
-    public void listOffer(Customer customer2)
-    {
+    public boolean checkforOffer(Customer customer2){
+        boolean flag=false;
         if (requests.size()==0)
-            System.out.println("Request a ride first then list the offers");
-        else
-        {
+            flag= false;
+        else {
+            for(int i=0;i<requests.size();i++) {
+                if (requests.get(i).getCustomer().getUserName().equals(customer2.getUserName()));
+                flag= true;
+            }
+        }
+        return flag;
+    }
+    public void listOffer(Customer customer2){
+
             for(int i=0;i<requests.size();i++)
             {
                 if(requests.get(i).getCustomer().getUserName().equals(customer2.getUserName()))
@@ -212,7 +220,7 @@ public class Ride {
                 }
                 }
             }
-        }
+
 
     }
     public void acceptOffer(int indexOffer,Customer customer){
@@ -231,7 +239,6 @@ public class Ride {
 
 
     }
-
     public void start(int index){
         Ride ride= requests.get(index);
         rides.add(ride);

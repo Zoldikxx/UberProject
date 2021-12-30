@@ -78,12 +78,17 @@ public class CustomerMenu {
                 customer.requestRide(customer, source, destination);
             }
             else if (choice.equals("2")) {
-                int choice4;
-                customer.listOffer(customer);
-                System.out.println("Enter offer you want to accept");
-                choice4=input.nextInt();
-                customer.acceptOffer(choice4,customer);
-                System.out.println("Ride has started");
+                if(!customer.checkOffers(customer)){
+                    System.out.println("Make a request first");
+                }
+                else {
+                    int choice4;
+                    customer.listOffer(customer);
+                    System.out.println("Enter offer you want to accept");
+                    choice4 = input.nextInt();
+                    customer.acceptOffer(choice4, customer);
+                    System.out.println("Ride has started");
+                }
 
             }
             else if (choice.equals("3")) {
@@ -97,7 +102,7 @@ public class CustomerMenu {
 
             }
             else if (choice.equals("4")) {
-                if(!customer.History(customer)){
+                if(!customer.checkHistory(customer)){
                     System.out.println("No previous rides");
                 }
                 else {

@@ -78,10 +78,15 @@ public class DriverMenu {
                 System.out.println("Fav area has been added successfully");
             }
             else if(choice.equals("2")){
-                System.out.print("Enter area you want to remove: ");
-                String favarea = input.next();
-                if(driver.removeFavArea(favarea)){
-                    System.out.println("Area removed successfully");
+                if(!driver.checkFavArea(driver)){
+                    System.out.println("Add favorite area first");
+                }
+                else {
+                    System.out.print("Enter area you want to remove: ");
+                    String favarea = input.next();
+                    if (driver.removeFavArea(favarea)) {
+                        System.out.println("Area removed successfully");
+                    }
                 }
             }
             else if(choice.equals("3")){
@@ -99,12 +104,17 @@ public class DriverMenu {
                     driver.listRequests(driver);
             }
             else if(choice.equals("5")){
-                driver.listAllRequests();
-                System.out.println("Enter the ride you want");
-                int choice5=input.nextInt();
-                System.out.println("Enter the offer you want to make");
-                int choice2=input.nextInt();
-                driver.AddOffer(choice5, choice2, driver);
+                if(!driver.checkRequests()){
+                    System.out.println("There are no requests");
+                }
+                else {
+                    driver.listAllRequests();
+                    System.out.println("Enter the ride you want");
+                    int choice5 = input.nextInt();
+                    System.out.println("Enter the offer you want to make");
+                    int choice2 = input.nextInt();
+                    driver.AddOffer(choice5, choice2, driver);
+                }
             }
 
             else if(choice.equals("6")){
